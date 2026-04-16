@@ -3,7 +3,11 @@ Yet some other Terminate Buttons for Eclipse
 
 This project is based off the work of Nick Tan, with modifications provided by Christoph142 and missedone.
 
-## 2.x branch requires Java 11!
+## Requirements
+
+- Java 17+ (tested on Java 21)
+- Maven 3.9+
+- Tycho 4 (configured in `pom.xml`, targeting Eclipse 2025-03; builds for Eclipse 4.35+)
 
 ## The problem
 Eclipse uses the standard Java call Process.destroy() which sends SIGTERM (or WM_CLOSE) but also closes stdin, stdout and stderr. Closing these streams can cause a developer to lose insight into
@@ -21,8 +25,7 @@ taskkill /f /pid %pid%
 
 ## Installation
 
-1. Download the dist folder in this repository
-2. run 'mvn package' in the root directory
-3. in Eclipse open Help -> Install new Software... -> Add... -> Local...
-3. Select the site/target/site folder
-4. Select the plugin and proceed like normal
+1. Run `mvn package` in the project root.
+2. In Eclipse: **Help → Install New Software… → Add… → Local…**
+3. Point it to `site/target/repository` (or use the generated `site/target/yatb-site-*.zip`).
+4. Select the plugin and proceed as usual.
