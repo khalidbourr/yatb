@@ -7,17 +7,15 @@
     <artifactId>yatb-pom</artifactId>
     <version>2.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
     <properties>
-        <tycho.version>1.3.0</tycho.version>
+        <tycho.version>4.0.10</tycho.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <modules>
         <module>yatb-plugin</module>
         <module>yatb-feature</module>
         <module>site</module>
     </modules>
-
     <build>
         <plugins>
             <plugin>
@@ -31,8 +29,8 @@
                 <artifactId>tycho-compiler-plugin</artifactId>
                 <version>${tycho.version}</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>17</source>
+                    <target>17</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -41,31 +39,23 @@
                 <artifactId>target-platform-configuration</artifactId>
                 <version>${tycho.version}</version>
                 <configuration>
-                    <resolver>p2</resolver>
+                    <executionEnvironment>JavaSE-17</executionEnvironment>
+                    <environments>
+                        <environment>
+                            <os>linux</os>
+                            <ws>gtk</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                    </environments>
                 </configuration>
             </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.3.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.tycho</groupId>
-                    <artifactId>maven-osgi-packaging-plugin</artifactId>
+                    <groupId>org.eclipse.tycho</groupId>
+                    <artifactId>tycho-packaging-plugin</artifactId>
                     <version>${tycho.version}</version>
-                    <executions>
-                        <execution>
-                            <id>timestamp</id>
-                            <phase>validate</phase>
-                            <goals>
-                                <goal>timestamp</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <!-- for some reason configuration won't work here, have to define in each module -->
                     <configuration>
                         <archive>
                             <addMavenDescriptor>false</addMavenDescriptor>
@@ -75,12 +65,11 @@
             </plugins>
         </pluginManagement>
     </build>
-
     <repositories>
         <repository>
-            <id>luna</id>
+            <id>eclipse-2025-03</id>
             <layout>p2</layout>
-            <url>http://download.eclipse.org/releases/luna</url>
+            <url>https://download.eclipse.org/releases/2025-03/</url>
         </repository>
     </repositories>
 </project>
